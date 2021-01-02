@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app bg-indigo-darker">
     <DefaultSideBar
       :weatherData="weathers"
       :getLocalWoeid="getLocalWoeid"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import DefaultSideBar from "./components/SideBar.vue";
+import DefaultSideBar from "./components/SideBar/SideBar.vue";
 import axios from "axios";
 
 export default {

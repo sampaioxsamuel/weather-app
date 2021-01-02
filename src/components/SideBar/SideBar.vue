@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-indigo-darker">
+  <section class="">
     <div id="search" class="w-1/3 h-screen font-sans">
       <Search @getWeather="$emit('getWeather')" />
       <TodayWeather :data="weatherData" />
@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Search from "./SideBar/SearchButtons.vue";
-import TodayWeather from "./SideBar/TodayWeather.vue";
+import Search from "./SearchButtons.vue";
+import TodayWeather from "./TodayWeather.vue";
 export default {
   props: {
     weatherData: {
@@ -45,7 +45,7 @@ export default {
   top: 0;
   z-index: -1;
   opacity: 0.05;
-  background: url("../assets/imgs/Cloud-background.png") center no-repeat;
+  background: url("../../assets/imgs/Cloud-background.png") center no-repeat;
   max-width: 100%;
 }
 

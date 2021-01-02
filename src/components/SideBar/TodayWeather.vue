@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div v-else>Not Loaded YET</div>
+  <div v-else class="text-white text-center mt-32">Loading Data...</div>
 </template>
 
 <script>
