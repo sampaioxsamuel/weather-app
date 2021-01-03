@@ -49,7 +49,7 @@ export default {
           details: r.data.parent,
         });
       });
-      console.log("opa");
+      console.log("weather", this.weathers);
     },
   },
   mounted() {
