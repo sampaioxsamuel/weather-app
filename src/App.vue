@@ -1,20 +1,24 @@
 <template>
-  <div id="app bg-indigo-darker">
-    <DefaultSideBar
-      :weatherData="weathers"
-      :getLocalWoeid="getLocalWoeid"
-      :getWeather="getWeather"
-      @getWeather="getWeather(woeid)"
-    />
+  <div id="app">
+    <div class="grid main">
+      <SideBar
+        :weatherData="weathers"
+        :getLocalWoeid="getLocalWoeid"
+        :getWeather="getWeather"
+        @getWeather="getWeather(woeid)"
+      />
+      <Weather :weatherData="weathers" />
+    </div>
   </div>
 </template>
 
 <script>
-import DefaultSideBar from "./components/SideBar/SideBar.vue";
+import SideBar from "./components/SideBar/SideBar.vue";
 import axios from "axios";
+import Weather from "./components/Weather/Weather.vue";
 
 export default {
-  components: { DefaultSideBar },
+  components: { SideBar, Weather },
   name: "App",
   data() {
     return {
@@ -73,5 +77,14 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+.main {
+  background: #100e1d;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 450px 1fr;
+  gap: 1rem;
 }
 </style>

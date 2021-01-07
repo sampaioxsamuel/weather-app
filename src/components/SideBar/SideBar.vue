@@ -1,9 +1,7 @@
 <template>
-  <section class="">
-    <div id="search" class="w-1/3 h-screen font-sans">
-      <Search @getWeather="$emit('getWeather')" />
-      <TodayWeather :data="weatherData" />
-    </div>
+  <section id="search" class="h-screen font-sans">
+    <Search @getWeather="$emit('getWeather')" />
+    <TodayWeather :data="weatherData" />
   </section>
 </template>
 

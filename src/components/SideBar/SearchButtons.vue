@@ -2,15 +2,14 @@
   <div class="flex justify-around items-center pt-8">
     <a
       href="#"
-      class="no-underline text-center py-4 px-4 bg-grey-dark text-white shadow-md hover:bg-grey-darker"
+      class="no-underline text-center py-2 px-3 bg-grey-dark text-white shadow-md hover:bg-grey-darker"
       >Search for Places</a
     >
     <a
       href="#"
-      class="no-underline py-2 px-3 bg-grey-dark text-white shadow-md rounded-full hover:bg-grey-darker"
+      class="location no-underline py-2 px-3 bg-grey-dark text-white shadow-md rounded-full hover:bg-grey-darker"
       @click="$emit('getWeather')"
     >
-      <img :src="GPSIcon" alt="Icon" />
     </a>
   </div>
 </template>
@@ -25,5 +24,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.location::before {
+  content: url("../../assets/icons/gps.svg");
+  width: 100%;
+  height: 100%;
+  left: 8px;
+  top: 8px;
+  position: absolute;
+}
+.location {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
 </style>

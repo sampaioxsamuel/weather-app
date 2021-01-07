@@ -1,13 +1,13 @@
 <template>
   <div
     v-if="data.length"
-    class="mt-16 flex flex-col items-center justify-center"
+    class="mt-16 flex flex-col text-center items-center justify-center"
   >
-    <div>
-      <img :src="weatherImage" width="150px" alt="" />
+    <div class="items-end mr-2">
+      <img :src="weatherImage" width="150px" height="150px" alt="Weather" />
     </div>
     <div class="mt-5">
-      <div class="flex items-center text-center">
+      <div class="flex items-center">
         <h1 class="xxl text-grey-light">{{ currentTemperature }}</h1>
         <span class="text-grey-dark text-3xl pt-6">ºC</span>
       </div>
@@ -34,7 +34,9 @@ export default {
       return this.data[0].weather[0].weather_state_name;
     },
     todayDate() {
-      let date = new Date(this.data[0].weather[0].applicable_date);
+      let date = new Date(
+        `${this.data[0].weather[0].applicable_date}T12:00:00Z`
+      );
       const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const months = [
         "Jan",
@@ -49,7 +51,7 @@ export default {
       ];
       const currentWeekDay = days[date.getDay()];
       const currentMonth = months[date.getMonth()];
-      return `${currentWeekDay}, ${date.getDay()} ${currentMonth}`;
+      return `${currentWeekDay}, ${date.getDate()} ${currentMonth}`;
     },
   },
   props: {
