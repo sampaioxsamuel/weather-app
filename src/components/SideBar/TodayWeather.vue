@@ -14,7 +14,7 @@
       <div class="text-center text-grey-dark mt-10">
         <p class="font-semibold text-2xl">{{ stateName }}</p>
         <p class="mt-12">Today ⸳ {{ todayDate }}</p>
-        <p class="location font-semibold mt-2">{{ data[0].details.title }}</p>
+        <p class="location font-bold mt-4">{{ data[0].details.title }}</p>
       </div>
     </div>
   </div>
