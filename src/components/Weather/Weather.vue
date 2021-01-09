@@ -1,6 +1,6 @@
 <template>
   <div class="text-white font-sans">
-    <WeatherCard :weatherData="weatherData[0]" />
+    <WeatherCard />
   </div>
 </template>
 

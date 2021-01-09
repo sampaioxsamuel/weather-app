@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="data.length"
+    v-if="weather"
     class="mt-16 flex flex-col text-center items-center justify-center"
   >
     <div class="items-end mr-2">
@@ -14,7 +14,9 @@
       <div class="text-center text-grey-dark mt-10">
         <p class="font-semibold text-2xl">{{ stateName }}</p>
         <p class="mt-12">Today ⸳ {{ todayDate }}</p>
-        <p class="location font-bold mt-4">{{ data[0].details.title }}</p>
+        <p class="location font-bold mt-4">
+          {{ currentCity.title }}
+        </p>
       </div>
     </div>
   </div>
@@ -24,19 +26,23 @@
 <script>
 export default {
   computed: {
+    currentCity() {
+      return this.$store.getters.cityData;
+    },
+    weather() {
+      return this.$store.getters.todayWeather;
+    },
     currentTemperature() {
-      return Math.round(this.data[0].weather[0].the_temp);
+      return Math.round(this.weather.the_temp);
     },
     weatherImage() {
-      return require(`@/assets/imgs/${this.data[0].weather[0].weather_state_name}.png`);
+      return require(`@/assets/imgs/${this.weather.weather_state_name}.png`);
     },
     stateName() {
-      return this.data[0].weather[0].weather_state_name;
+      return this.weather.weather_state_name;
     },
     todayDate() {
-      let date = new Date(
-        `${this.data[0].weather[0].applicable_date}T12:00:00Z`
-      );
+      let date = new Date(`${this.weather.applicable_date}T12:00:00Z`);
       const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       const months = [
         "Jan",
@@ -53,9 +59,6 @@ export default {
       const currentMonth = months[date.getMonth()];
       return `${currentWeekDay}, ${date.getDate()} ${currentMonth}`;
     },
-  },
-  props: {
-    data: {},
   },
   data() {
     return {

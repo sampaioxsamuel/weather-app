@@ -8,7 +8,6 @@
     <a
       href="#"
       class="location no-underline py-2 px-3 bg-grey-dark text-white shadow-md rounded-full hover:bg-grey-darker"
-      @click="$emit('getWeather')"
     >
     </a>
   </div>

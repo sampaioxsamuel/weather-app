@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center flex justify-center" v-if="weatherData">
+  <div class="text-center flex justify-center" v-if="weekWeather">
     <div
       class="m-4 pt-8 px-3 w-1/2 bg-indigo-darker shadow-md"
       v-for="weather in weekWeather"
@@ -11,9 +11,9 @@
         :alt="weather.weather_state_name"
         class="mt-2"
         width="80px"
-        height="90px"
+        height="80px"
       />
-      <div class="my-5 flex justify-between">
+      <div class="my-5 px-1 flex justify-between">
         <p class="font-semibold">{{ weather.max_temp | roundTemp }}ºC</p>
         <p class="font-semibold text-grey">
           {{ weather.min_temp | roundTemp }}ºC
@@ -28,7 +28,7 @@ export default {
   props: ["weatherData"],
   computed: {
     weekWeather() {
-      return this.weatherData.weather.slice(1, 6);
+      return this.$store.getters.weekWeather;
     },
   },
   methods: {

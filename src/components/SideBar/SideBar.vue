@@ -1,7 +1,7 @@
 <template>
   <section id="search" class="h-screen font-sans">
-    <Search @getWeather="$emit('getWeather')" />
-    <TodayWeather :data="weatherData" />
+    <Search />
+    <TodayWeather />
   </section>
 </template>
 
@@ -9,26 +9,7 @@
 import Search from "./SearchButtons.vue";
 import TodayWeather from "./TodayWeather.vue";
 export default {
-  props: {
-    weatherData: {
-      type: Array,
-      required: true,
-    },
-    getLocalWoeid: {
-      type: Function,
-      required: true,
-    },
-    getWeather: {
-      type: Function,
-      required: true,
-    },
-  },
   components: { Search, TodayWeather },
-  data() {
-    return {
-      woeid: "",
-    };
-  },
 };
 </script>
 
