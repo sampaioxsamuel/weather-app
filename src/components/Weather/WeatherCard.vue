@@ -1,7 +1,10 @@
 <template>
-  <div class="text-center flex justify-center" v-if="weekWeather">
+  <div
+    class="text-center flex flex-wrap justify-between p-6"
+    v-if="weekWeather"
+  >
     <div
-      class="m-4 pt-8 px-3 w-1/2 bg-indigo-darker shadow-md"
+      class="pt-5 px-3 md:w-1/6 sm:w-1/2 bg-indigo-darkest shadow-md"
       v-for="weather in weekWeather"
       :key="weather.id"
     >

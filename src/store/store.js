@@ -7,8 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     weathers: { weather: '', details: '' },
-    woeid: null,
-    browserCoords: null,
+    woeid: '',
+    coords: '',
     base_url: "https://www.metaweather.com/api/location",
     search_url: "https://www.metaweather.com/api/location/search/?lattlong=",
   },
@@ -34,17 +34,32 @@ export default new Vuex.Store({
   },
   actions: {
     getLocalCoord({ state }) {
-      const success = (position) => {
-        const { latitude, longitude } = position.coords;
-        state.browserCoords = { latitude, longitude };
-      };
-      window.navigator.geolocation.getCurrentPosition(success);
+
+      const getPosition = () => {
+        return new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject)
+        })
+      }
+
+      if (!localStorage['coords']) {
+        getPosition()
+          .then(({ coords }) => {
+            const { latitude, longitude } = coords
+            state.coords = { latitude, longitude }
+            localStorage.setItem('coords', JSON.stringify(state.coords))
+          })
+          .catch((err) => console.log('deu pau abigo', err))
+      }
+
+      state.coords = JSON.parse(localStorage.getItem('coords'))
     },
+
     getWoeid({ state, commit }) {
-      axios.get(`${state.search_url}${state.browserCoords.latitude},${state.browserCoords.longitude}`)
+      axios.get(`${state.search_url}${state.coords.latitude},${state.coords.longitude}`)
         .then(r => commit('woeid', r.data[0]))
         .catch(err => commit('woeid', err))
     },
+
     getWeather({ state, commit }) {
       let data = {}
       axios.get(`${state.base_url}/${state.woeid}`).then((r) => {

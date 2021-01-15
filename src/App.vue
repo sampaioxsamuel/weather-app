@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="grid main">
+    <div class="grid min-h-screen main">
       <SideBar />
       <Weather />
     </div>
@@ -15,8 +15,8 @@ export default {
   components: { SideBar, Weather },
   name: "App",
   computed: {
-    browserCoords() {
-      return this.$store.state.browserCoords;
+    coords() {
+      return this.$store.state.coords;
     },
     woeid() {
       return this.$store.state.woeid;
@@ -26,7 +26,7 @@ export default {
     this.$store.dispatch("getLocalCoord");
   },
   watch: {
-    browserCoords() {
+    coords() {
       this.$store.dispatch("getWoeid");
     },
     woeid(value) {
@@ -52,5 +52,11 @@ export default {
   display: grid;
   grid-template-columns: 450px 1fr;
   gap: 1rem;
+}
+
+@media screen and (max-width: 720px) {
+  .grid {
+    grid-template-columns: auto;
+  }
 }
 </style>

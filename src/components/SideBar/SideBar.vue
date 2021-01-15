@@ -1,5 +1,5 @@
 <template>
-  <section id="search" class="h-screen font-sans">
+  <section id="search" class="h-full md:fixed font-sans">
     <Search />
     <TodayWeather />
   </section>
